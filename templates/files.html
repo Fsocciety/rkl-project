@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block body %}
+<h1>Upload</h1>
+<form method="post" enctype="multipart/form-data">
+    <label for="file">File</label>
+    <input id="file" name="file" type="file" />
+    <button>Upload</button>
+</form>
+<div class="csv-wrapper">
+{% for file in files: %}
+    <div class="csv-item">
+        <img class="csv-img" src="{{url_for('static', filename='/css/img/csv.png')}}">
+        <h2>{{file}}</h2>
+        <button onclick="location.href='files/{{file}}'">DOWNLOAD</button>
+        <button onclick="deleteFile('{{file}}')">Delete</button>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock %} 
+

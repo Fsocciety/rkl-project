@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block onload %}
+onload = 'createData({{ reports }}, {{ currentDate }}, {{ args }})'
+{% endblock %}
+
+{% block body %}
+<h1 class="title">Izvestaj</h1>
+<div class="filters">
+    <div class="input-wrapper margin">
+        <input type="number" id="broj" class="search-input" value="{{ broj }}" placeholder="Broj">
+        <select name="registracija" class="registracija">
+            <option value="" class="placeholder">Registracija</option>
+            {% for i in registracije %}
+            <option value="{{i[0]}}" {% if registracija==i[0] %}selected{% endif %}>{{i[0]}}</option>
+            {% endfor %}
+        </select>
+        <select name="artikal" class="artikal">
+            <option value="" class="placeholder">Artikal</option>
+            {% for i in artikli %}
+            <option value="{{i[0]}}" {% if artikal==i[0]: %}selected{% endif %}>{{i[0]}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="input-wrapper margin">
+        <select name="porucilac" class="porucilac">
+            <option value="" class="placeholder">Porucilac</option>
+            {% for i in porucioci %}
+            <option value="{{i[0]}}" {% if porucilac == i[0] %}selected{% endif %}>{{i[0]}}</option>
+            {% endfor %}
+        </select>
+        <select name="prevoznik" class="prevoznik">
+            <option value="" class="placeholder">Prevoznik</option>
+            {% for i in prevoznici %}
+            <option value="{{i[0]}}" {% if prevoznik == i[0]: %}selected{% endif %}>{{i[0]}}</option>
+            {% endfor %}
+        </select>
+        <select name="posiljalac" class="posiljalac">
+            <option value="" class="placeholder">Posiljalac</option>
+            {% for i in posiljke %}
+            <option value="{{i[0]}}" {% if posiljalac==i[0]: %}selected{% endif %}>{{i[0]}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="input-wrapper margin">
+        <select name="primalac" class="primalac">
+            <option value="" class="placeholder">Primalac</option>
+            {% for i in primaoci %}
+            <option value="{{i[0]}}" {% if primalac == i[0]: %}selected{% endif %}>{{i[0]}}</option>
+            {% endfor %}
+        </select>
+            <div class="date margin">
+                <div>
+                    <label for="start">Datum od</label>
+                    <input type="date" id="start" class="search-input" value="{{ datumStart }}">
+                </div>
+                <div>
+                    <label for="end">Datum do</label>
+                    <input type="date" id="end" class="search-input" value="{{ datumEnd }}">
+                </div>
+            </div>
+    </div>
+
+
+    <button id="submit" class="margin" onclick="test()">Submit</button> 
+
+
+
+</div>
+<table class="table">
+    <tr>
+        <th class="broj" onclick="sortCol('broj', '0')">broj <span class="icon-arrow">&UpArrow;</span></th>
+        <th class="datum" onclick="sortCol('datum', '1')">datum <span class="icon-arrow">&UpArrow;</span></th>
+        <th class="posiljalac" onclick="sortCol('posiljalac', '2')">posiljalac <span class="icon-arrow">&UpArrow;</span></th>
+        <th class="porucilac" onclick="sortCol('porucilac', '3')">porucilac <span class="icon-arrow">&UpArrow;</span></th>
+        <th class="primalac" onclick="sortCol('primalac', '4')">primalac <span class="icon-arrow">&UpArrow;</span></th>
+        <th class="artikal" onclick="sortCol('artikal', '5')">artikal <span class="icon-arrow">&UpArrow;</span></th>
+        <th class="prevoznik" onclick="sortCol('prevoznik', '6')">prevoznik <span class="icon-arrow">&UpArrow;</span></th>
+        <th class="registracija" onclick="sortCol('registracija', '7')">registracija <span class="icon-arrow">&UpArrow;</span></th>
+        <th class="vozac" onclick="sortCol('vozac', '8')">vozac <span class="icon-arrow">&UpArrow;</span></th>
+        <th class="bruto" onclick="sortCol('bruto', '9')">bruto <span class="icon-arrow">&UpArrow;</span></th>
+        <th class="tara" onclick="sortCol('tara', '10')">tara <span class="icon-arrow">&UpArrow;</span></th>
+        <th class="neto" onclick="sortCol('neto', '11')">neto <span class="icon-arrow">&UpArrow;</span></th>
+    </tr>
+    <tbody class="tbody">
+
+    </tbody>
+</table>
+<div class="pages">
+    <h4>Broj prikazanih dana: <span class="broj-dana">1</span></h4>
+    <button class="show-more">Show more</button>
+</div>
+
+<!-- <button class="test-btn">PRESS</button> -->
+{% endblock %}
